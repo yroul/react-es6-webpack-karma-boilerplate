@@ -4,6 +4,11 @@ import EventBus from '../event/EventBus';
 
 import { Link } from 'react-router';
 
+
+
+// This is the working syntaxt to import typescript modue 'ES6 style'
+import { default as AuthApi } from '../api/auth/index';
+
 class About extends React.Component{
 
 
@@ -25,6 +30,12 @@ class About extends React.Component{
         if(nextProps.params.user){
             nextState.user = nextProps.params.user;
         }
+        
+        let test = new AuthApi();
+
+        test.test('coucou');
+
+        
     }
 
 

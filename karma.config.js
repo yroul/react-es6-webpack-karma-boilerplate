@@ -27,7 +27,13 @@ module.exports = function (config) {
         loaders: [{
           test: /\.(js|jsx)$/, exclude: /(bower_components|node_modules)/,
           loader: 'babel-loader'
-        }],
+        },
+          {
+            test: /\.tsx?$/,
+            exclude: /(bower_components|node_modules)/,
+            loaders: ['react-hot', 'babel','ts-loader'],
+          }
+        ],
         postLoaders: [{
           test: /\.(js|jsx)$/, exclude: /(node_modules|bower_components|tests)/,
           loader: 'istanbul-instrumenter'
