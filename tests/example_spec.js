@@ -2,6 +2,14 @@ import React from 'react';
 import TestUtils  from 'react-addons-test-utils';
 
 
+import About from '../src/about/index';
+
+// This is the working syntaxt to import typescript modue 'ES6 style'
+
+import { default as AuthApi } from '../src/api/auth/index';
+
+
+
 describe('1+1', () => {
   let sum = 1+1;
 
@@ -14,7 +22,6 @@ describe('1+1', () => {
 
 
 
-import About from '../src/about/index';
 describe('About', function () {
 
   it('renders without problems', function () {
@@ -22,8 +29,20 @@ describe('About', function () {
     expect(root).not.toBeUndefined();
   });
 
+});
 
 
 
+
+
+describe('Tyescript', function () {
+
+    it('is able to compile and run', function () {
+
+        let testObject = new AuthApi();
+
+        expect(testObject.test('coucou')).toBe(true);
+
+    });
 
 });

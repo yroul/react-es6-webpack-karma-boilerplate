@@ -18,8 +18,6 @@ class AuthAPI implements IAuth {
 
     test (astring: string){
 
-        console.log('you give : '+astring);
-
         return true;
     }
 

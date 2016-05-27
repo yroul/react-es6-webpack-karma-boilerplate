@@ -1,5 +1,7 @@
 var webpack = require('karma-webpack');
 
+var path = require('path');
+
 module.exports = function (config) {
   config.set({
     frameworks: [ 'jasmine' ],
@@ -11,7 +13,8 @@ module.exports = function (config) {
     browsers: [ 'PhantomJS','Chrome' ],
     preprocessors: {
       'tests/**/*_spec.js': ['webpack'],
-      'src/**/*.js': ['webpack']
+      'src/**/*.js': ['webpack'],
+      'src/**/*.ts': ['webpack']
     },
     reporters: [ 'spec', 'coverage' ],
     coverageReporter: {
@@ -23,6 +26,9 @@ module.exports = function (config) {
       ]
     },
     webpack: {
+        resolve: {
+            extensions: ['', '.js', '.jsx','.ts','.tsx']
+        },
       module: {
         loaders: [{
           test: /\.(js|jsx)$/, exclude: /(bower_components|node_modules)/,
@@ -32,6 +38,7 @@ module.exports = function (config) {
             test: /\.tsx?$/,
             exclude: /(bower_components|node_modules)/,
             loaders: ['react-hot', 'babel','ts-loader'],
+            include: path.resolve(__dirname, "src")
           }
         ],
         postLoaders: [{
