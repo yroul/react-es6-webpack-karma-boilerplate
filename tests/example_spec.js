@@ -1,5 +1,5 @@
-var React = require('react');
-var TestUtils = require('react/lib/ReactTestUtils'); //I like using the Test Utils, but you can just use the DOM API instead.
+import React from 'react';
+import TestUtils  from 'react-addons-test-utils';
 
 
 describe('1+1', () => {
@@ -12,11 +12,18 @@ describe('1+1', () => {
 
 
 
-var About = require('../src/about/index');
+
+
+import About from '../src/about/index';
 describe('About', function () {
+
   it('renders without problems', function () {
-    var root = TestUtils.renderIntoDocument(<About/>);
+    var root = TestUtils.renderIntoDocument(<About />);
     expect(root).not.toBeUndefined();
   });
+
+
+
+
 
 });

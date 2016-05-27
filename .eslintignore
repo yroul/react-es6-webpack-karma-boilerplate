@@ -4,3 +4,4 @@ node_modules/*
 tests/*
 *.config.js
 *.config.production.js
+build/*

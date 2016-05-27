@@ -19,7 +19,7 @@ import Test from './Test';
 
 let store = createStore(Reducer);
 
-var appProps = {
+let appProps = {
     store: store
 };
 let AppWrapper = React.createClass({
@@ -60,9 +60,9 @@ ReactDOM.render((
  <Provider store = {store}>
      <Router history={browserHistory}>
          <Route path="/" component={App}/>
-         <Route path="/about" component={About}>
-             <Route path=":id" component={About}/>
-         </Route>
+         <Route path="/about" component={About}/>
+         <Route path="/about/:user" component={About}/>
+
      </Router>
  </Provider>
  ), document.getElementById('root'))

@@ -1,5 +1,4 @@
 import React from 'react';
-import Component from 'react';
 import { Link } from 'react-router';
 import List from './list';
 
@@ -8,7 +7,7 @@ import EventBus from './event/EventBus';
 
 import { connect } from 'react-redux';
 
-class App extends Component {
+class App extends React.Component {
 
     static contextTypes = {
         store: React.PropTypes.object

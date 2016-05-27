@@ -67,6 +67,7 @@
     "karma-webpack": "^1.7.0",
     "phantomjs": "^1.9.17",
     "phantomjs-polyfill": "0.0.1",
+    "react-addons-test-utils": "^15.1.0",
     "react-hot-loader": "*",
     "webpack": "^1.10.5",
     "webpack-dev-server": "^1.8.0"
