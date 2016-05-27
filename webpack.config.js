@@ -56,7 +56,7 @@ module.exports = {
     publicPath: '/static/'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx','.ts']
   },
   devtool: 'eval-source-map',
   plugins: [
@@ -69,7 +69,10 @@ module.exports = {
         test: /\.jsx?$/,
         loaders: ['react-hot', 'babel'],
         include: path.join(__dirname, 'src')
-      }
+      },
+
+      { test: /\.ts$/, loader: 'ts-loader' }
+
     ]
   }
 };

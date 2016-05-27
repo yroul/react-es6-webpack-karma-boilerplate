@@ -1,24 +1,25 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Component from 'react';
 import { Link } from 'react-router';
 import List from './list';
 
-import EventBus from './event/EventBus'
+import EventBus from './event/EventBus';
 
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-class App extends React.Component {
+class App extends Component {
 
     static contextTypes = {
-        store: React.PropTypes.object,
-    }
+        store: React.PropTypes.object
+    };
 
     constructor(props) {
         super(props);
 
         this.state = {
-            value : ""
-        }
+            value: ''
+        };
 
         //because this.props.mySuperDispatchMethod is ugly
         this.dispatchInstrumentAction = this.props.mySuperDispatchMethod;
@@ -32,10 +33,10 @@ class App extends React.Component {
         console.log('App component mount !');
 
 
-        EventBus.subscribe('INSTRUMENT_ADDED', function (ev) {
+        EventBus.subscribe('INSTRUMENT_ADDED', function () {
             console.log('instrument added');
-            console.log(this.props.instruments)
-        }, this)
+            console.log(this.props.instruments);
+        }, this);
     }
 
 
@@ -44,7 +45,7 @@ class App extends React.Component {
         this.setState({value: event.target.value});
     }
 
-    addInstrument(ev) {
+    addInstrument() {
         if (this.state.value.length > 0) {
             console.log('add instrument');
             /*this.props.store.dispatch({
@@ -52,10 +53,10 @@ class App extends React.Component {
                 name: this.state.value
             });*/
             this.dispatchInstrumentAction({
-                type: "ADD_INSTRUMENT",
+                type: 'ADD_INSTRUMENT',
                 name: this.state.value
             });
-            this.setState({value: ""});
+            this.setState({value:''});
         }
     }
 
@@ -85,10 +86,11 @@ class App extends React.Component {
 
 App.propTypes = {
     myCustomState : React.PropTypes.string,
-    mySuperDispatchMethod: React.PropTypes.func.isRequired
+    mySuperDispatchMethod: React.PropTypes.func.isRequired,
+    instruments: React.PropTypes.array
 };
 App.defaultProps = {
-    myCustomState: "unknown"
+    myCustomState: 'unknown'
 };
 
 
@@ -97,24 +99,24 @@ App.defaultProps = {
  * @param state
  * @returns {{instruments: *}}
  */
-let mapStateToProps  = function(state){
+let mapStateToProps  = function (state){
     return {
         instruments : state.instruments
     }
-}
+};
 
 /**
  * Make "mySuperDispatchMethod" available in 'App.props'
  * @param dispatch
  * @returns {{mySuperDispatchMethod: mySuperDispatchMethod}}
  */
-let mapDispatchToProps  = function(dispatch){
+let mapDispatchToProps  = function (dispatch){
     return {
-        mySuperDispatchMethod : function(toDispatch){
+        mySuperDispatchMethod : function (toDispatch){
             return dispatch(toDispatch)
         }
     }
-}
+};
 
 /**
  * If we do not connect 'mapDispatchToProps', 'dispatch' method will be available in App.props
