@@ -50,7 +50,7 @@ module.exports = {
     publicPath: '/static/'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx','.ts','.tsx']
   },
   devtool: 'source-map',
   plugins: [
@@ -67,10 +67,24 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [
+    /*loaders: [
       {
         test: /\.jsx?$/,
         loaders: ['babel'],
+        include: path.join(__dirname, 'src')
+      }
+    ]*/
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        loaders: ['react-hot', 'babel'],
+        include: path.join(__dirname, 'src')
+      },
+
+      {
+        test: /\.tsx?$/,
+        //loader: 'ts-loader',
+        loaders: ['react-hot', 'babel','ts-loader'],
         include: path.join(__dirname, 'src')
       }
     ]

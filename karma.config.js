@@ -25,6 +25,9 @@ module.exports = function (config) {
         { type: 'cobertura', subdir: '.', file: 'cobertura.txt' }
       ]
     },
+
+
+      //FIXME : better require a webpack.test.config instead of duplicating code
     webpack: {
         resolve: {
             extensions: ['', '.js', '.jsx','.ts','.tsx']
