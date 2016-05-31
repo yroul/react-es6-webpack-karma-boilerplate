@@ -7,6 +7,8 @@ import EventBus from './event/EventBus';
 
 import { connect } from 'react-redux';
 
+import {FormattedMessage} from 'react-intl';
+
 class App extends React.Component {
 
     static contextTypes = {
@@ -17,7 +19,8 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            value: ''
+            value: '',
+            userLocale: 'en'
         };
 
         //because this.props.mySuperDispatchMethod is ugly
@@ -36,6 +39,9 @@ class App extends React.Component {
             console.log('instrument added');
             console.log(this.props.instruments);
         }, this);
+
+
+        console.log(this.state)
     }
 
 
@@ -58,13 +64,37 @@ class App extends React.Component {
             this.setState({value:''});
         }
     }
+    handleLocaleChange (e){
+            this.setState({
+                userLocale: e.target.value
+            });
+
+
+    }
+    setLocale (){
+        if(this.state.locale !== ''){
+            this.props.mySuperDispatchMethod({
+                type: 'SET_LOCALE',
+                value: this.state.userLocale
+            });
+        }
+    }
 
     render() {
         //console.log(this.getInitialState());
         return (
             // Add your component markup and other subcomponent references here.
             <div>
-                <h1>Hello, World Yoa n!</h1>
+                <FormattedMessage
+                    id='GREETING'
+                    description='Greeting to welcome the user to the app'
+                    defaultMessage='TEST {name}!'
+                    values={{
+                        name: 'Yoan'
+                    }}
+                />
+
+
                 <h1> Response of life: {this.props.myCustomState || this.state.myCustomState}</h1>
                 <br/>
                 <Link to="/about">/about</Link>
@@ -77,6 +107,14 @@ class App extends React.Component {
                 <div className="list">
                     <List items={this.props.instruments}/>
                 </div>
+
+
+                <input type="text"
+                       value={this.state.userLocale}
+                       onChange={this.handleLocaleChange.bind(this)}
+                />
+                <input className="button" type="button" value="Set locale" onClick={this.setLocale.bind(this)}/>
+
             </div>
 
         );
@@ -100,7 +138,8 @@ App.defaultProps = {
  */
 let mapStateToProps  = function (state){
     return {
-        instruments : state.instruments
+        instruments : state.instruments,
+        locale : state.locale
     }
 };
 
