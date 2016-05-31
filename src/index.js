@@ -39,42 +39,6 @@ addLocaleData([...en, ...fr,...es]);
 
 let store = createStore(Reducer);
 
-let appProps = {
-    store: store
-};
-let AppWrapper = React.createClass({
-    render: function () {
-        return (
-            <App {...appProps} />
-        );
-    }
-});
-
-/*
-React.render((
-    <Router history={browserHistory}>
-             <Route path="/" component={AppWrapper}/>
-                <Route path="/about" component={About}>
-                <Route path=":id" component={About}/>
-            </Route>
-     </Router>
-),document.body)*/
-
-
-
-
-
-
-
-
-//works !
-/*ReactDOM.render((
- <Provider store = {store}>
- <Test />
- </Provider>
- ), document.getElementById('root'))*/
-
-
 let translationsForUsersLocale = {
     en: {
         GREETING: 'Hello {name}'
@@ -90,8 +54,15 @@ let translationsForUsersLocale = {
 //It looks very difficult to allow "hot locale switching"
 //Let's go with a easier way.
 let language = localStorage['dev-locale'] || window.navigator.userLanguage || window.navigator.language;
-let locale = language.split("-")[0];
+let locale = language.split('-')[0];
 
+
+/*globals DEBUG */
+if(DEBUG){
+    console.log('debug mode');
+}
+else
+    console.log('PRODUCTION MODE');
 
 ReactDOM.render((
     <IntlProvider locale={locale}  messages={translationsForUsersLocale[locale]}>
@@ -104,7 +75,7 @@ ReactDOM.render((
              </Router>
          </Provider>
     </IntlProvider>
- ), document.getElementById('root'))
+ ), document.getElementById('root'));
 
 
 

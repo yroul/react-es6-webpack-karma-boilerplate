@@ -60,6 +60,9 @@ module.exports = {
   },
   devtool: 'eval-source-map',
   plugins: [
+    new webpack.DefinePlugin({
+      DEBUG : true
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
